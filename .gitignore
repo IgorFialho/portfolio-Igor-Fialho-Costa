@@ -1,0 +1,18 @@
+# Dependências
+node_modules/
+
+# Ambiente
+.env
+.env.local
+.env.*.local
+
+# Sistema e IDE
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+
+# Build (se no futuro usar ferramenta de build)
+dist/
+build/

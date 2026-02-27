@@ -1,0 +1,10 @@
+{
+  "name": "curriculo-igor-fialho-costa",
+  "version": "1.0.0",
+  "description": "Página de currículo/portfólio estática em HTML, CSS e JS.",
+  "private": true,
+  "scripts": {
+    "start": "npx live-server ."
+  }
+}
+

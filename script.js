@@ -39,30 +39,31 @@
     updateHeader();
   }
 
-  // Efeito 3D na foto do hero (inclina conforme o mouse)
+  // Efeito 3D parallax: disco e foto reagem ao mouse em velocidades diferentes
   var photoWrap = document.getElementById('hero-photo');
   if (photoWrap && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
     var photo = photoWrap.querySelector('.hero__photo');
-    if (photo) {
+    var disc = photoWrap.querySelector('.hero__photo-disc');
+    if (photo && disc) {
       photoWrap.classList.add('hero__photo-wrap--tilt');
-      photoWrap.addEventListener('mouseenter', function () {
-        photoWrap.addEventListener('mousemove', onMouseMove);
-      });
-      var baseX = 4;
-      var baseY = -6;
-      photo.style.transform = 'rotateX(' + baseX + 'deg) rotateY(' + baseY + 'deg)';
-      photoWrap.addEventListener('mouseleave', function () {
-        photoWrap.removeEventListener('mousemove', onMouseMove);
-        photo.style.transform = 'rotateX(' + baseX + 'deg) rotateY(' + baseY + 'deg)';
-      });
-      function onMouseMove(e) {
+      photoWrap.addEventListener('mousemove', function (e) {
         var rect = photoWrap.getBoundingClientRect();
         var x = (e.clientX - rect.left) / rect.width - 0.5;
         var y = (e.clientY - rect.top) / rect.height - 0.5;
-        var rotateY = baseY + x * 14;
-        var rotateX = baseX - y * 14;
-        photo.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
-      }
+
+        var photoX = x * 12;
+        var photoY = y * 10;
+        photo.style.transform = 'translate(calc(-50% + ' + photoX + 'px), ' + photoY + 'px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg)';
+
+        var discX = x * -4;
+        var discY = y * -4;
+        disc.style.transform = 'translate(calc(-50% + ' + discX + 'px), calc(-50% + ' + discY + 'px))';
+      });
+
+      photoWrap.addEventListener('mouseleave', function () {
+        photo.style.transform = 'translate(-50%, 0)';
+        disc.style.transform = 'translate(-50%, -50%)';
+      });
     }
   }
 })();

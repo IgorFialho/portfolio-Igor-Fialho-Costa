@@ -479,6 +479,36 @@ a {
   line-height: 1.6;
 }
 
+.timeline__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.timeline__list li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.timeline__list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.timeline__list li strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
 /* ===== Education ===== */
 .education {
   display: flex;
@@ -537,6 +567,65 @@ a {
   border-color: var(--accent);
   color: var(--accent);
   background: rgba(245, 158, 11, 0.06);
+}
+
+/* ===== Tech Grid ===== */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.tech-group {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.tech-group:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.08);
+}
+
+.tech-group__title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.tech-group__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.tech-group__list li {
+  position: relative;
+  padding-left: 1.2rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  transition: color 0.2s;
+}
+
+.tech-group__list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.tech-group__list li:hover {
+  color: var(--text);
 }
 
 /* ===== Contact ===== */

@@ -195,9 +195,11 @@ a {
   position: relative;
   width: 320px;
   height: 320px;
+  --dx: 0px;
+  --dy: 0px;
 }
 
-/* Disco menor atrás: fundo + borda sutil */
+/* Disco menor atrás: fundo + sombra (sem borda — borda é nos pseudo-elements) */
 .hero__photo-disc {
   position: absolute;
   width: 300px;
@@ -212,12 +214,38 @@ a {
     rgba(255, 255, 255, 0.01) 60%,
     transparent 100%
   );
-  border: 5px solid rgba(255, 255, 255, 0.08);
   box-shadow:
     inset 0 0 30px rgba(0, 0, 0, 0.3),
     0 0 60px -20px rgba(245, 158, 11, 0.08);
-  z-index: 1;
+  z-index: 0;
   pointer-events: none;
+}
+
+/* Borda do disco dividida: metade superior atrás da foto, metade inferior na frente */
+.hero__photo-wrap::before,
+.hero__photo-wrap::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 5px solid #2a2a2e;
+  pointer-events: none;
+  transition: transform 0.1s ease-out;
+}
+
+.hero__photo-wrap::before {
+  transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)));
+  z-index: 1;
+  clip-path: inset(0 0 50% 0);
+}
+
+.hero__photo-wrap::after {
+  transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)));
+  z-index: 3;
+  clip-path: inset(50% 0 0 0);
 }
 
 /* Foto: maior que o disco, centralizada, "saindo" da moldura */
@@ -721,6 +749,12 @@ a {
   }
 
   .hero__photo-disc {
+    width: 240px;
+    height: 240px;
+  }
+
+  .hero__photo-wrap::before,
+  .hero__photo-wrap::after {
     width: 240px;
     height: 240px;
   }

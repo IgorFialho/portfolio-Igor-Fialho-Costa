@@ -58,11 +58,15 @@
         var discX = x * -4;
         var discY = y * -4;
         disc.style.transform = 'translate(calc(-50% + ' + discX + 'px), calc(-50% + ' + discY + 'px))';
+        photoWrap.style.setProperty('--dx', discX + 'px');
+        photoWrap.style.setProperty('--dy', discY + 'px');
       });
 
       photoWrap.addEventListener('mouseleave', function () {
         photo.style.transform = 'translate(-50%, 0)';
         disc.style.transform = 'translate(-50%, -50%)';
+        photoWrap.style.setProperty('--dx', '0px');
+        photoWrap.style.setProperty('--dy', '0px');
       });
     }
   }
